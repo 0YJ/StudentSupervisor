@@ -38,6 +38,8 @@ cd StudentManagementSystem
 #### 编译项目：
 
 ```bash
+g++ -o app main.cpp student.cpp -lsqlite3
+
 make
 ```
 #### 运行程序：
