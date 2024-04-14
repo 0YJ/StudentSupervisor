@@ -1,23 +1,33 @@
 #include "student.h"
+#include <sqlite3.h>
+#include <iostream>
 
-Student::Student(int id, std::string name, int age) : id(id), name(name), age(age) {}
-
-int Student::getId() const {
-    return id;
+static int callback(void *NotUsed, int argc, char **argv, char **azColName){
+    for(int i = 0; i<argc; i++){
+        std::cout << azColName[i] << " = " << (argv[i] ? argv[i] : "NULL") << "\n";
+    }
+    std::cout << "\n";
+    return 0;
 }
 
-std::string Student::getName() const {
-    return name;
+std::vector<Student> Student::loadAllStudents() {
+    sqlite3* db;
+    sqlite3_open("student.db", &db);
+
+    const char* sql = "SELECT id, name, age FROM students;";
+    std::vector<Student> students;
+    sqlite3_exec(db, sql, callback, 0, NULL);
+
+    sqlite3_close(db);
+    return students;
 }
 
-int Student::getAge() const {
-    return age;
-}
+void Student::saveStudent(const Student& student) {
+    sqlite3* db;
+    sqlite3_open("student.db", &db);
 
-void Student::setName(std::string name) {
-    this->name = name;
-}
+    std::string sql = "INSERT INTO students (name, age) VALUES ('" + student.name + "', " + std::to_string(student.age) + ");";
+    sqlite3_exec(db, sql.c_str(), 0, 0, 0);
 
-void Student::setAge(int age) {
-    this->age = age;
+    sqlite3_close(db);
 }
