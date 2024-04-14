@@ -39,7 +39,7 @@ cd StudentManagementSystem
 
 ```bash
 g++ -o app main.cpp student.cpp -lsqlite3
-
+或
 make
 ```
 #### 运行程序：
