@@ -1,10 +1,24 @@
 CC=g++
-CFLAGS=-Iinclude
+CFLAGS=-Iinclude -std=c++11
+LDFLAGS=-lsqlite3
+SRCDIR=src
+BINDIR=bin
+SOURCES=$(wildcard $(SRCDIR)/*.cpp)
+OBJECTS=$(SOURCES:$(SRCDIR)/%.cpp=$(BINDIR)/%.o)
 
-all: app
+# 目标可执行文件
+TARGET=$(BINDIR)/app
 
-app: src/main.cpp src/student.cpp
-	$(CC) $(CFLAGS) -o bin/app src/main.cpp src/student.cpp
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CC) $^ -o $@ $(LDFLAGS)
+
+$(BINDIR)/%.o: $(SRCDIR)/%.cpp
+	@mkdir -p $(BINDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f bin/*
+	rm -f $(BINDIR)/*
+
+.PHONY: all clean
