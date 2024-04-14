@@ -2,15 +2,13 @@
 #define STUDENT_H
 
 #include <string>
+#include <vector>
 
 class Student {
 public:
     Student(int id, std::string name, int age);
-    int getId() const;
-    std::string getName() const;
-    int getAge() const;
-    void setName(std::string name);
-    void setAge(int age);
+    static std::vector<Student> loadAllStudents();
+    static void saveStudent(const Student& student);
 
 private:
     int id;
