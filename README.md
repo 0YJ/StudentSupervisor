@@ -77,4 +77,4 @@ Add Student: Enter ID, Name, Age
 ```
 ### 许可证
 
-该项目遵循MIT许可证。有关更多信息，请查看 LICENSE 文件。
+该项目遵循MIT许可证。
