@@ -11,7 +11,7 @@
 ## 开始
 ### 结构如下
 ```bash
-StudentManagementSystem/
+StudentSupervisor/
 |-- bin/                    # 可执行文件存放目录
 |-- include/                # 头文件存放目录
 |   |-- student.h           # 学生类的定义
@@ -32,8 +32,8 @@ StudentManagementSystem/
 ### 安装
 #### 克隆仓库到本地机器：
 ```bash
-git clone https://github.com/yourusername/StudentManagementSystem.git
-cd StudentManagementSystem
+git clone https://github.com/0YJ/StudentSupervisor.git
+cd StudentSupervisor
 ```
 #### 编译项目：
 
